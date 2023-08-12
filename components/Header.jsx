@@ -1,19 +1,25 @@
 import Cookies from "js-cookie";
+import dynamic from "next/dynamic";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {BsCart} from "react-icons/bs"
- 
+
+
 const Header = () => {
+
+  
+
 
    const router = useRouter()
   const cookie = parseCookies();
   // console.log(cookie);
-
+  
   const user = cookie.user ? JSON.parse(JSON.stringify(cookie.user)) : "";
-
+  
+  // const {user , setUser} = useState({})
   return (
     <>
       <header className="text-gray-600 body-font">
@@ -53,8 +59,6 @@ const Header = () => {
           {user ?
             <>
                 <button className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={()=>{
-
-
                   Cookies.remove('token')
                   Cookies.remove('user')
                   router.push('/signin')
@@ -62,17 +66,19 @@ const Header = () => {
              </>   
             :
             <>
+            <button className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" >
 
 
 
             <Link href="/signin">login</Link>
+            </button>
 
 
 
             </>
             }
 
-            <Link href='/cart' className="ml-4 cart "> 
+            <Link href='cart' className="ml-4 cart "> 
               <BsCart/>
             </Link>
             
@@ -82,4 +88,7 @@ const Header = () => {
   );
 };
 
-export default Header;
+// export default Header;
+export default dynamic(() => Promise.resolve(Header), {
+  ssr: false
+})

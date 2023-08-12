@@ -3,10 +3,7 @@ const{ObjectId} = mongoose.Schema.Types
 
 
 const cartSchema = new mongoose.Schema({
-    user:{
-        type: ObjectId,
-        ref: 'User'
-    },
+  
 
     products:[
         {
@@ -18,7 +15,12 @@ const cartSchema = new mongoose.Schema({
                 ref:'Product'
             }
         }
-    ]
+    ],
+
+    user:{
+        type: ObjectId,
+        ref: 'User'
+    }
 })
 
 

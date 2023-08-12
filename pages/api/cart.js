@@ -5,6 +5,8 @@ import dbConnect from "@/util/db";
 
 dbConnect();
 
+console.log(Cart)
+
 
 export default async (req,res)=>{
   switch(req.method){
@@ -46,9 +48,13 @@ const addProduct = Authenticated(async (req, res) => {
   const { productId } = req.body;
   
   const cart =  await Cart.findOne({user: req.userId})
+  console.log(cart)
 
 
-  const pExists =  cart.products.some(pdoc => productId === pdoc.product.toString() )
+
+  const pExists =  cart.products.some(pdoc => productId === pdoc.product.toString())
+  
+  // console.log("🚀 ~ file: cart.js:54 ~ addProduct ~ ̥:", pExists)
 
   
 

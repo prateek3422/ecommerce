@@ -12,16 +12,16 @@ export default async function post(req, res) {
     const { name, email, password } = req.body;
     await dbConnect()
 
-    console.log(req.body)
+    // console.log(req.body)
 
     const errmsg =  valid(name, email, password)
-    console.log(errmsg)
+    // console.log(errmsg)
     if(errmsg){
         return res.status(400).json({err: errmsg})
     }
 
     const user = await User.findOne({ email });
-    console.log(user)
+    // console.log(user)
     if (!user) {
       const passhash = await bcrypt.hash(password, 12);
 
@@ -30,11 +30,10 @@ export default async function post(req, res) {
         email,
         password:passhash
       });
-      
-      await Cart.create({
-        user:newUser._Id
-      })
-      
+
+      // const cart = await  Cart.create({user:newUser._id})
+
+
       res.status(200).json({
         message: "successful",
         passhash

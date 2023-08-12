@@ -54,7 +54,7 @@ const singup = () => {
 
       setTimeout (() =>{
 
-        router.push("/");
+        router.push("/signin");
       }, 1000)
 
     }
