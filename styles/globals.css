@@ -88,3 +88,39 @@ body {
 .cart svg{
   width: 3rem;
 }
+
+
+
+
+
+/* --------cart----------- */
+
+.cart-list{
+  display: grid;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* align-content: center; */
+  justify-items: center;
+  align-items: center;
+}
+
+.quantity-box{
+  border: 1px solid rgb(16, 15, 15);
+}
+
+.img-des p{
+  margin-bottom: 1rem;
+}
+
+.subTotal p{
+  font-weight: 600;
+  font-size: 1.2rem;
+
+}
+
+
+.subTotal span{
+  font-weight: 400;
+  font-size: 1.2rem;
+
+}

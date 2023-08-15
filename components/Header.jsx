@@ -78,7 +78,7 @@ const Header = () => {
             </>
             }
 
-            <Link href='cart' className="ml-4 cart "> 
+            <Link href='/cart' className="ml-4 cart "> 
               <BsCart/>
             </Link>
             
