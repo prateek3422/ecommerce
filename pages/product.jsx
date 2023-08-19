@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import {BsFillGridFill} from "react-icons/bs";
 import {FaThList} from "react-icons/fa";
+import Search from './component/search';
 
 const product = ({data}) => {
 
@@ -15,8 +16,7 @@ const product = ({data}) => {
           <div className="conponent1">
 
             <div className="search">
-              <input type="text" placeholder='Search' />
-
+              <Search/>
             </div>
             <div className="category flex flex-col mt-8">
               <h1 className='mb-4  '>category</h1>
@@ -45,7 +45,7 @@ const product = ({data}) => {
                 </span>
               </div>
 
-              <p>{data.product.length} Total product</p>
+              {/* <p>{data.product.length} Total product</p> */}
 
               <div className="dropdown">
                 <p>price</p>
@@ -166,7 +166,7 @@ const product = ({data}) => {
 }
 
 export const getServerSideProps = async () => {
-    const res = await fetch('http://localhost:3000/api/products/getAllProduct')
+    const res = await fetch('http://localhost:3000/api/products/productController')
     const data = await res.json()
 
 

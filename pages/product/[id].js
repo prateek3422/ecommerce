@@ -16,40 +16,40 @@ const productDetails = ({ data }) => {
   const cookie = parseCookies();
   const user = cookie.user ? JSON.parse(JSON.stringify(cookie.user)) : "";
 
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-    router.push('/cart')
-  };
+  // const handleAddToCart = (product) => {
+  //   dispatch(addToCart(product));
+  //   router.push('/cart')
+  // };
 
-  // const AddToCart = async (product)=>{
-  //   const res =  await fetch('http://localhost:3000/api/cart',{
-  //     method:"PUT",
-  //     headers:{
-  //       "Content-Type":"application/json",
-  //       "Authorization":cookie.token
-  //     },
-  //     body:JSON.stringify({
-  //      productId:product._id
-  //     })
-  //   })
-  // const res2 = await res.json()
-  // // console.log(res2)̥
-  // console.log("🚀 ~ file: [id].js:36 ~ AddToCart ~ ̥:",res2 )
-  // if(res2.error){
-  //    Cookies.remove("user")
-  //    Cookies.remove("token")
-  //    router.push('/login')
-  // }
+  const AddToCart = async (product)=>{
+    const res =  await fetch('http://localhost:3000/api/cart',{
+      method:"PUT",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":cookie.token
+      },
+      body:JSON.stringify({
+        quantity: 1,
+       productId:product._id
+      })
+    })
+  const response = await res.json()
+  console.log("🚀 ~ file: [id].js:36 ~ AddToCart ~ ̥:",response )
+  if(response.error){
+     Cookies.remove("user")
+     Cookies.remove("token")
+     router.push('/login')
+  }
 
 
-  // }
+  }
 
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           {[data].map(({product}) => {
-            // console.log(product._id)
+            console.log(product)
             return (
               <>
                 <div key={product._id} className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -83,7 +83,7 @@ const productDetails = ({ data }) => {
                       </span>
                       {user ? (
                         <button
-                          onClick={() =>  handleAddToCart(product) }
+                          onClick={() => AddToCart(product) }
                           className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
                         >
                           AddToCart

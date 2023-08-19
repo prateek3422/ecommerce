@@ -31,7 +31,7 @@ export default async function post(req, res) {
         password:passhash
       });
 
-      // const cart = await  Cart.create({user:newUser._id})
+      const cart = await  Cart.create({user:newUser._id})
 
 
       res.status(200).json({

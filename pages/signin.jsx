@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const singin = () => {
+const Singin = () => {
 
   
   const [email, setEmail] = useState();
@@ -164,7 +164,7 @@ const singin = () => {
               </button>
 
               <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                <Link href="/Signup">Sign up</Link>
+                <Link href="/signup">Sign up</Link>
               </button>
             </div>
           </form>
@@ -174,4 +174,4 @@ const singin = () => {
   );
 };
 
-export default singin;
+export default Singin;
