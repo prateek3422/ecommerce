@@ -7,11 +7,11 @@ import { toast } from "react-toastify";
 // }
 
 
-// export const cartdata =  createAsyncThunk('cart/fetchCart' , async () =>{
-// const res = await axios('http://localhost:3000/api/cart')
-// console.log(res.data)
-// return res.data
-// })
+export const cartdata =  createAsyncThunk('cart/fetchCart' , async () =>{
+const res = await axios.get('http://localhost:3000/api/cart')
+return res.data
+})
+// console.log(cartdata)
 
 const getFromLocalStorage = (key) => {
   if (!key || typeof window === "undefined") {
@@ -20,10 +20,10 @@ const getFromLocalStorage = (key) => {
   return localStorage.getItem(key);
 };
 const initialState = {
-  cartItem: getFromLocalStorage("cartItems")
-    ? JSON.parse(getFromLocalStorage("cartItems") || "{}")
-    : [],
-    // cartdata,
+  // cartItem: getFromLocalStorage("cartItems")
+  //   ? JSON.parse(getFromLocalStorage("cartItems") || "{}")
+  //   : [],
+    cartdata : [],
   totalQuantity: 0,
   totalPrice: 0,
 };
@@ -64,7 +64,7 @@ export const cartSlice = createSlice({
       }
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItem));
-      // state.cartdata.push(action.payload)
+      state.cartdata.push(action.payload)
     },
 
     removeFromCart(state, action) {

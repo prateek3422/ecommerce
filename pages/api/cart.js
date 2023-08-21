@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
-import Cart from "@/model/cart";
+
 import dbConnect from "@/util/db";
 import product from "../product";
+import Cart from "@/model/Cart"
+import Authenticated from "@/util/Authenticated";
 
 
 
@@ -22,24 +24,6 @@ export default async (req,res)=>{
           await removeProduct(req,res) 
           break   
   }
-}
-
-function Authenticated(icomponent) {
-  return (req, res) => {
-    const { authorization } = req.headers;
-    if (!authorization) {
-      return res.status(401).json({ error: "you must login" });
-    }
-    try {
-      const { userid } = jwt.verify( authorization, process.env.JWT_TOKEN);
-      // console.log(userid)
-      req.userid = userid;
-      return icomponent(req, res);
-    } catch (error) {
-      
-      return res.status(500).json({ error: 'internal error' });
-    }
-  };
 }
 
 const fetchUserCart = Authenticated(async (req, res) => {
@@ -81,8 +65,6 @@ const addProduct = Authenticated( async (req, res) => {
 
 const removeProduct = Authenticated(async(req, res) =>{
   const {productId} = req.body
-  console.log(productId)
-
   const cart = await Cart.findOneAndUpdate(
     {user: req.userid},
     {$pull : {products: {product: productId}}},

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -27,10 +28,9 @@ const Singup = () => {
     // console.log(data);
 
     if (data.error) {
-
       toast.error(data.error, {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -38,12 +38,10 @@ const Singup = () => {
         progress: undefined,
         theme: "light",
       });
-    
     } else {
-
       toast.success("your account has been created", {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -52,17 +50,14 @@ const Singup = () => {
         theme: "light",
       });
 
-      setTimeout (() =>{
-
+      setTimeout(() => {
         router.push("/signin");
-      }, 1000)
-
+      }, 1000);
     }
   };
 
   return (
     <>
-
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -157,8 +152,15 @@ const Singup = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                Sign up
               </button>
+
+              <div className=" signup">
+                <span>Already have an account ?</span>
+                <button className="signup-btn">
+                  <Link href="/signin ">Sign in</Link>
+                </button>
+              </div>
             </div>
           </form>
         </div>

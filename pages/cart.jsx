@@ -10,16 +10,16 @@ import { addToCart, decreaseFromCart, removeFromCart } from "./store/cartSlice";
 import StripeCheckout from "react-stripe-checkout";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Cart = ({ error, product }) => {
-  
   const { token } = parseCookies();
 
-  const [cproduct, setCproducts] = useState(product)
+  const [cproduct, setCproducts] = useState(product);
 
-  const {count, setCount } = useState(0)
-  console.log(product)
-
+  let price = 0;
+  const { count, setCount } = useState(0);
+  // console.log(product)
 
   if (!token) {
     return (
@@ -50,29 +50,35 @@ const Cart = ({ error, product }) => {
     router.push("/signin");
   }
 
-
   // const cart = useSelector((state) => state.cart);
   // // console.log(cart);
   // const dispatch = useDispatch();
 
-  const handleRemoveFromCart = async(item) => {
-    console.log( item.product._id)
-    const res = await fetch('http://localhost:3000/api/cart',{
-      method:"DELETE",
-      headers:{
-        'Content-Type': 'application/json',
-        "Authorization": token
+  const handleRemoveFromCart = async (item) => {
+    console.log(item.product._id);
+    const res = await fetch("http://localhost:3000/api/cart", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify({
-        productId:item.product._id
-      })
+        productId: item.product._id,
+      }),
+    });
 
-
-    })
-
-    const data = await res.json()
-    console.log(data)
-    setCproducts(data)
+    const data = await res.json();
+    setCproducts(data);
+    toast.info("product remove", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
     // dispatch(removeFromCart(item));
   };
@@ -83,18 +89,39 @@ const Cart = ({ error, product }) => {
 
   // const handleAddToCart = ( item) => {
 
-
   //   // dispatch(addToCart(item));
 
   // };
 
-  const increament =(item) =>{
-    setCount(item.quantity+1)
-  }
+  // const increament =(item) =>{
+  //   setCount(item.quantity+1)
+  // }
 
-  const handleToPay = (paymentInfo) => {
-    console.log(paymentInfo);
+  const handleToPay = async (paymentInfo) => {
+    console.log(paymentInfo)
+    const res = await fetch("http://localhost:3000/api/payment", {
+      method: "POST",
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization":token 
+      },
+      body: JSON.stringify({
+        paymentInfo
+      }),
+    });
+    const data = await res.json();
+    toast.success(data.message, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
   };
+
   return (
     <>
       <div className="cart">
@@ -124,10 +151,11 @@ const Cart = ({ error, product }) => {
                 <hr className=" h-0.5 bg-black" />
                 {cproduct?.products?.map((item) => {
                   // console.log("🚀 ~ file: cart.jsx:103 ~ {[product]?.map ~ ̥:", item.product._id)
+                  price = price + item.quantity * item.product.price;
                   return (
                     <>
                       <div
-                        key={ item.product._id}
+                        key={item.product._id}
                         className="cart-list items-center m-4 "
                       >
                         <div className="items flex  items-center">
@@ -145,14 +173,14 @@ const Cart = ({ error, product }) => {
                         </div>
                         <p>{item.product.price}</p>
                         <div className="quantity-box flex flex-row items-center">
-                          <button onClick={() => increament(item)}>
+                          {/* <button>
                             <IoMdAdd />
-                          </button>
+                          </button> */}
                           <p>{item.quantity}</p>
 
-                          <button>
+                          {/* <button>
                             <AiOutlineMinus />
-                          </button>
+                          </button> */}
                         </div>
                         <p>{item.product.price * item.quantity}</p>
                       </div>
@@ -163,18 +191,18 @@ const Cart = ({ error, product }) => {
 
                 <div className="cart-checkout flex justify-between items-center mt-8">
                   <div className="clear-cart">
-                    <button className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    {/* <button className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                       clear Cart
-                    </button>
+                    </button> */}
                   </div>
                   <div className="total-amount w-52">
                     <div className=" subTotal flex justify-between mb-8">
                       <span>Sub Total</span>
-                      <p>28939</p>
+                      <p>{price}</p>
                     </div>
                     <StripeCheckout
                       name="my store"
-                      // amount={item.price}
+                      amount = {price * 100}
                       currency="INR"
                       shippingAddress={true}
                       billingAddress={true}

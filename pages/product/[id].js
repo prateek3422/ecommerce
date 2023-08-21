@@ -5,10 +5,11 @@ import { parseCookies } from "nookies";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 import dynamic from "next/dynamic";
+import { toast } from "react-toastify";
 
 
 const productDetails = ({ data }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // console.log(data)
   // console.log("🚀 ~ file: [id].js:6 ~ productDetails ~ ̥:", data.product);
 
@@ -36,9 +37,34 @@ const productDetails = ({ data }) => {
   const response = await res.json()
   console.log("🚀 ~ file: [id].js:36 ~ AddToCart ~ ̥:",response )
   if(response.error){
+    toast.error(response.error,{
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
      Cookies.remove("user")
      Cookies.remove("token")
      router.push('/login')
+  }else{
+    toast.success("product added to cart", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+      router.push("/cart");
+
+
   }
 
 
@@ -49,7 +75,7 @@ const productDetails = ({ data }) => {
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           {[data].map(({product}) => {
-            console.log(product)
+            // console.log(product)
             return (
               <>
                 <div key={product._id} className="lg:w-4/5 mx-auto flex flex-wrap">

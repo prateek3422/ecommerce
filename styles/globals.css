@@ -90,7 +90,22 @@ body {
 }
 
 
+/* --------signup-------- */
 
+.signup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup span{
+  margin-right: 0.5rem;
+}
+
+.signup-btn{
+  font-size: 1rem;
+  font-weight: 700;
+}
 
 
 /* --------cart----------- */
@@ -104,9 +119,9 @@ body {
   align-items: center;
 }
 
-.quantity-box{
+/* .quantity-box{
   border: 1px solid rgb(16, 15, 15);
-}
+} */
 
 .img-des p{
   margin-bottom: 1rem;
