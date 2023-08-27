@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -13,104 +14,56 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --btn-background: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
   }
 }
 
-h1,h2,h3{
+h1,
+h2,
+h3 {
   font-weight: 600;
-  font-size: 1.25rem/* 20px */;
-    line-height: 1.75rem/* 28px */;
+  font-size: 1.25rem /* 20px */;
+  line-height: 1.75rem /* 28px */;
 }
 body {
-  color: rgb(var(--foreground-rgb));
+  /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+  font-family: "Space Grotesk", sans-serif;
 }
 
+@import url('./homeScreen.css');
 
-
-.card{
-  height: 38vh;
-  background: #e1dfdc;
-  margin-top: 3rem;
-
-}
-
-
-
-
-.category span{
-  margin-bottom: 1rem;
-  text-transform: capitalize;
-  cursor: pointer;
-}
-
-
-
-.filters-box{
-    /* background: #000; */
-    /* border: 1px solid black; */
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
-}
-
-
-.box{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20vw;
-  margin-top: 1rem;
-
-}
-
-.box img{
-  width: 18vw;
-  height: 28vh;
-}
-
-.para{
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem ;
-}
-
-.icons span{
-  margin-left: 1rem;
-}
 
 /* -----------------header--------- */
-.cart svg{
+.cart svg {
   width: 3rem;
 }
 
-
 /* --------signup-------- */
 
-.signup{
+.signup {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.signup span{
+.signup span {
   margin-right: 0.5rem;
 }
 
-.signup-btn{
+.signup-btn {
   font-size: 1rem;
   font-weight: 700;
 }
 
-
 /* --------cart----------- */
 
-.cart-list{
+.cart-list {
   display: grid;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -123,19 +76,75 @@ body {
   border: 1px solid rgb(16, 15, 15);
 } */
 
-.img-des p{
+.img-des p {
   margin-bottom: 1rem;
 }
 
-.subTotal p{
+.subTotal p {
   font-weight: 600;
   font-size: 1.2rem;
+}
+
+.subTotal span {
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+
+
+/* ------service----- */
+
+.service-card{
+  margin: 2rem 2rem;
 
 }
 
 
-.subTotal span{
-  font-weight: 400;
-  font-size: 1.2rem;
+.service-box-img img{
+  height: 40vh;
+  width: 21vw;
+  /* border-radius: 1rem; */
+  border-radius:1rem ;
+  /* border-top-right-radius:1rem ; */
+}
 
+
+
+
+
+
+
+
+/* ----------media query------------ */
+
+
+@media (max-width: 600px) {
+  .nav{
+    display: none;
+  }
+
+  .hero-main{
+    display:flex;
+    flex-direction: column-reverse;
+
+
+  }
+  .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mobile-icon{
+    display: inline-block;
+    
+    font-size: 1.5rem;
+    
+  }
+  .mobile-icon{
+    display: inline-block;
+
+    font-size: 1.5rem;
+    
+  }
 }
