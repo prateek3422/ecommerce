@@ -6,30 +6,35 @@ const account = (orders) => {
   console.log(orders);
   const cookie = parseCookies();
 
-
   const user = cookie.user ? JSON.parse(cookie.user) : "";
 
-  const orderHistry = () =>{
-    return(
-      <>
-      {
-        orders?.map((item) =>{
-          console.log(item)
-          return(
-            <>
-            </>
-          )
-        })
-      }
-      </>
-    )
-
-  }
 
   return (
     <>
-      <p>account</p>
-      <h1>{user.name}</h1>
+      <div className="container flex justify-center">
+        <div className="profile-card">
+          <div className="flex mt-24">
+            <div className="pro-img">
+              <img src="/images/avatar.svg" alt="" />
+            </div>
+            <div className="pro-para">
+              <div className="user-details">
+                <div className="mb-8">
+                  <h3>Full Name</h3>
+                  <p>{user.name}</p>
+                </div>
+                <div>
+                  <h3>Email</h3>
+                  <p>{user.email}</p>
+                </div>
+                <div className="pro-btn">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
@@ -44,13 +49,12 @@ export const getServerSideProps = async (ctx) => {
 
   const res = await fetch("http://localhost:3000/api/order", {
     headers: {
-      "Authorization": token,
+      Authorization: token,
     },
   });
   const data = await res.json();
-  console.log(data);
   return {
-    props: {orders : data},
+    props: { orders: data },
   };
 };
 

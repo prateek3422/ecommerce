@@ -47,7 +47,7 @@ export default async function post(req, res) {
       });
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   return  res.status(400).json({msg:'Sorry. Please Login Again or Contact Us!'});
   }
 }

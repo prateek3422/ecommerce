@@ -54,7 +54,7 @@ export default async (req,res)=>{
             
                 })
             } catch (error) {
-                console.error(error)
+                // console.error(error)
                 res.status(500).json({error: error})
             }
   }
@@ -97,13 +97,13 @@ export default async (req,res)=>{
 
 
         const product = await Product.create(req.body)
-        console.log(product)
+        // console.log(product)
         res.status(200).json({
           message: "Product create successfull",
           product,
         });
       } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(400).json(error)
       }
 

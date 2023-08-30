@@ -1,0 +1,14 @@
+
+li{
+    list-style: none;
+    text-decoration: none;
+}
+.nav-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* --mobile----- */
