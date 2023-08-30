@@ -1,13 +1,16 @@
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { parseCookies } from "nookies";
+import Cookies from "js-cookie";
 import React from "react";
+import { useRouter } from "next/router";
 
 const account = (orders) => {
   console.log(orders);
   const cookie = parseCookies();
+  const router = useRouter()
 
   const user = cookie.user ? JSON.parse(cookie.user) : "";
-
 
   return (
     <>
@@ -27,10 +30,37 @@ const account = (orders) => {
                   <h3>Email</h3>
                   <p>{user.email}</p>
                 </div>
-                <div className="pro-btn">
+         
+              </div>
+              <div className="pro-btn">
+                  <button
+                    className="flex w-full justify-center mb-2 rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    <Link  href="/order">
+                    My Order 
+                    </Link>
+                  </button>
+
+                  {/* <button
+                    className="flex w-full justify-center mb-2 rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    channge Password
+                  </button> */}
+
+
+<button
+              className="w-full  flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={() => {
+                Cookies.remove("token");
+                Cookies.remove("user");
+                router.push("/signin");
+              }}
+              >
+              logout
+            </button>
+              
                   
                 </div>
-              </div>
             </div>
           </div>
         </div>

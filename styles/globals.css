@@ -163,6 +163,12 @@ body {
   box-shadow: 10px 10px 29px #ebebeb, -9px -10px 30px #dcccf9;
 
 }
+.pro-btn{
+  width: 70%;
+  margin-top: 2rem;
+}
+
+
 
 .pro-para{
   width: 50vw;

@@ -21,7 +21,7 @@ const navbar = () => {
       <nav >
         <div className={openMenu ? "active mobileIcon" : "mobileIcon"}>
           <ul className="nav-list">
-            <li>
+            <li >
               <Link href="/" className=" hover:text-gray-900"  onClick={() => setOpenMenu(false)}>
                 Home
               </Link>
@@ -38,10 +38,16 @@ const navbar = () => {
               </Link>
             </li>
        
+       
 
       {/* <div className="nav-list flex items-center"> */}
         {user ? (
           <>
+               <li>
+              <Link href="/account" className=" hover:text-gray-900"   onClick={() => setOpenMenu(false)}>
+                Accounts
+              </Link>
+            </li>
           <div  onClick={() => setOpenMenu(false)}>
 
             <button

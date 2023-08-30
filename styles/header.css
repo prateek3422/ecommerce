@@ -9,6 +9,8 @@ li{
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    cursor: pointer;
 }
+
 
 /* --mobile----- */
