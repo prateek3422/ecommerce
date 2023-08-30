@@ -2,7 +2,11 @@ import User from "@/model/User";
 import dbConnect from "@/util/db";
 import valid from "@/util/valid";
 import bcrypt from "bcrypt";
-import Cart from  '@/model/cart'
+import Cart from  '@/model/Cart'
+import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
+
+
 
 
 
@@ -22,26 +26,28 @@ export default async function post(req, res) {
 
     const user = await User.findOne({ email });
     // console.log(user)
-    if (!user) {
-      const passhash = await bcrypt.hash(password, 12);
+    if(user) return res.status(400).json({err: 'This email already exists.'})
 
-      const newUser = await User.create({
-        name,
-        email,
-        password:passhash
-      });
-
-      const cart = await  Cart.create({user:newUser._id})
+    
+    const passhash = await bcrypt.hash(password, 12);
+    
+    const newUser = await User.create({
+      name,
+      email,
+      password:passhash,
+    });
+    
+    const cart = await  Cart.create({user:newUser._id})
+    // const token =  jwt.sign({user: newUser._id}, process.env.JWT_TOKEN, {expiresIn: process.env.JWT_Exp, });
 
 
       res.status(200).json({
         message: "successful",
-        passhash
+        passhash,
       });
-    } else {
-    return  res.status(500).json({ error: "User Already Exist" });
-    }
+
   } catch (error) {
-  return  res.status(400).json({error});
+    console.log(error);
+  return  res.status(400).json({msg:'Sorry. Please Login Again or Contact Us!'});
   }
 }

@@ -55,12 +55,12 @@ const Cart = ({ error, product }) => {
   // const dispatch = useDispatch();
 
   const handleRemoveFromCart = async (item) => {
-    console.log(item.product._id);
+
     const res = await fetch("http://localhost:3000/api/cart", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        "Authorization": token,
       },
       body: JSON.stringify({
         productId: item.product._id,
@@ -98,7 +98,6 @@ const Cart = ({ error, product }) => {
   // }
 
   const handleToPay = async (paymentInfo) => {
-    console.log(paymentInfo)
     const res = await fetch("http://localhost:3000/api/payment", {
       method: "POST",
       headers: {

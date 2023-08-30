@@ -5,20 +5,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import React, { useEffect, useState } from "react";
-import {BsCart} from "react-icons/bs"
-
+import { AiOutlineClose } from "react-icons/ai";
+import { BsCart } from "react-icons/bs";
+import { FaBars } from "react-icons/fa";
 
 const Header = () => {
-
-  
-
-
-   const router = useRouter()
+  const router = useRouter();
   const cookie = parseCookies();
   // console.log(cookie);
-  
+
   const user = cookie.user ? JSON.parse(JSON.stringify(cookie.user)) : "";
-  
+
   // const {user , setUser} = useState({})
   return (
     <>
@@ -37,52 +34,55 @@ const Header = () => {
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span className="ml-3 text-xl">Tailblocks</span>
+            <span className="ml-3 text-xl capitalize">Ecommerce</span>
           </a>
-          <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-            
+          <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center nav">
               <Link href="/" className="mr-5 hover:text-gray-900">
                 Home
               </Link>
-            
-            
+
               <Link href="/product" className="mr-5 hover:text-gray-900">
                 Product
               </Link>
-            
+
               <Link href="/about" className="mr-5 hover:text-gray-900">
                 About
               </Link>
-            
           </nav>
+          <div className="nav flex items-center">
 
-          {user ?
-            <>
-                <button className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={()=>{
-                  Cookies.remove('token')
-                  Cookies.remove('user')
-                  router.push('/signin')
-                }}>logout</button> 
-             </>   
-            :
-            <>
-            <button className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" >
+            {user ? (
+              <>
+                <button
+                  className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  onClick={() => {
+                    Cookies.remove("token");
+                    Cookies.remove("user");
+                    router.push("/signin");
+                  }}
+                >
+                  logout
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  <Link href="/signin">login</Link>
+                </button>
+              </>
+            )}
 
-
-
-            <Link href="/signin">login</Link>
-            </button>
-
-
-
-            </>
-            }
-
-            <Link href='/cart' className="ml-4 cart "> 
-              <BsCart/>
+            <Link href="/cart" className="ml-4 cart ">
+              <BsCart />
             </Link>
-            
-        </div>
+
+          </div>
+            <div className="mobile-icon">
+              <FaBars    name="mooblie-menu" className="mobile-menu-btn"/>
+              <AiOutlineClose name="mooblie-close" className="mobile-close-btn"/>
+            </div>
+            </div>
+
       </header>
     </>
   );
@@ -90,5 +90,5 @@ const Header = () => {
 
 // export default Header;
 export default dynamic(() => Promise.resolve(Header), {
-  ssr: false
-})
+  ssr: false,
+});

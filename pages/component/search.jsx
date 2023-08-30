@@ -5,7 +5,7 @@ import { IoMdSearch } from "react-icons/io";
 
 const Search = () => {
 
-  const [keyword, settKeyword] = useState('')
+  const [keyword, setKeyword] = useState('')
   const router = useRouter()
 
 
@@ -14,9 +14,9 @@ const Search = () => {
 
     if(keyword){
 
-      router.push(`/?keyword = ${keyword}`)
+      router.push(`/?keyword=${keyword}`)
     }else{
-      router.push('/')
+      router.push('/product')
     }
   }
 
@@ -25,7 +25,7 @@ const Search = () => {
     <form>
       <input type="text" placeholder="Search"
       value={keyword}
-      onChange={(e) => settKeyword(e.target.value)}
+      onChange={(e) => setKeyword(e.target.value)}
       required
       
       

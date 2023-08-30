@@ -6,21 +6,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Singin = () => {
-
-  
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const router = useRouter()
+  const router = useRouter();
 
-  
   const userSignin = async (e) => {
     e.preventDefault();
 
     const res = await fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+         "Content-Type":"application/json"
       },
       body: JSON.stringify({
         email,
@@ -28,7 +25,7 @@ const Singin = () => {
       }),
     });
 
-    const data = await res.json()
+    const data = await res.json();
 
     if (data.error) {
       toast.error(data.error, {
@@ -41,15 +38,7 @@ const Singin = () => {
         progress: undefined,
         theme: "light",
       });
-
-     
-
-    
-
     } else {
-
-
-
       toast.success("login success", {
         position: "top-center",
         autoClose: 1000,
@@ -60,19 +49,14 @@ const Singin = () => {
         progress: undefined,
         theme: "light",
       });
+      Cookies.set("token", data.token);
+      Cookies.set("user", JSON.stringify( data.user));
 
-      Cookies.set('token', data.token)
-      Cookies.set('user', data.user)
-
-      setTimeout (() =>{
+      setTimeout(() => {
         router.push("/account");
-      }, 1000)
+      }, 1000);
     }
-
-
-
   };
-
 
   return (
     <>
@@ -166,11 +150,9 @@ const Singin = () => {
               <div className=" signup">
                 <span>don't have an account ?</span>
                 <button className="signup-btn">
-
-                <Link href="/signup ">Sign up</Link>
+                  <Link href="/signup ">Sign up</Link>
                 </button>
               </div>
-
             </div>
           </form>
         </div>

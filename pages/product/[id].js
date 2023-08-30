@@ -6,8 +6,6 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 import dynamic from "next/dynamic";
 import { toast } from "react-toastify";
-
-
 const productDetails = ({ data }) => {
   // const dispatch = useDispatch();
   // console.log(data)
@@ -35,7 +33,7 @@ const productDetails = ({ data }) => {
       })
     })
   const response = await res.json()
-  console.log("🚀 ~ file: [id].js:36 ~ AddToCart ~ ̥:",response )
+  // console.log("🚀 ~ file: [id].js:36 ~ AddToCart ~ ̥:",response )
   if(response.error){
     toast.error(response.error,{
       position: "top-center",
@@ -135,6 +133,9 @@ const productDetails = ({ data }) => {
 };
 
 export const getServerSideProps = async ({ params: { id } }) => {
+
+
+
   const res = await fetch(`http://localhost:3000/api/products/${id}`);
   const data = await res.json();
 

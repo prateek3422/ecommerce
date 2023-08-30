@@ -1,27 +1,31 @@
+import { useFormik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { signupSchema } from "./auth/schema";
 
 const Singup = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+  };
 
-  const router = useRouter();
+  const onSubmit = async( values, action) =>{
+    // console.log(values.name)
 
-  const userSignup = async (e) => {
-    e.preventDefault();
     const res = await fetch("http://localhost:3000/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name,
-        email,
-        password,
+        name : values.name,
+        email: values.email,
+        password : values.password,
+
       }),
     });
     const data = await res.json();
@@ -54,7 +58,20 @@ const Singup = () => {
         router.push("/signin");
       }, 1000);
     }
-  };
+  }
+ 
+  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
+  useFormik({
+    initialValues,
+    validationSchema: signupSchema,
+    onSubmit,
+  });
+
+  const router = useRouter();
+
+
+
+
 
   return (
     <>
@@ -83,7 +100,7 @@ const Singup = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={(e) => userSignup(e)}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="Name"
@@ -96,12 +113,16 @@ const Singup = () => {
                   id="name"
                   name="name"
                   type="text"
-                  autoComplete="name"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  // autoComplete="name
+                  // value={name}
+                  value={values.name}
+                  // onChange={(e) => setName(e.target.value)}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.name && touched.name ? (
+                  <p className="form-error">{errors.name}</p>
+                ) : null}
               </div>
             </div>
 
@@ -117,12 +138,17 @@ const Singup = () => {
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  // autoComplete="email"
+                
+                  // value={email}
+                  value={values.email}
+                  // onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.email && touched.email ? (
+                  <p className="form-error">{errors.email}</p>
+                ) : null}
               </div>
             </div>
             <div>
@@ -139,11 +165,18 @@ const Singup = () => {
                   id="password"
                   name="password"
                   type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+
+                  // value={password}
+                  value={values.password}
+                  // onChange={(e) => setPassword(e.target.value)}
+
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+
+                {errors.password && touched.password ? (
+                  <p className="form-error">{errors.password}</p>
+                ) : null}
               </div>
             </div>
 
