@@ -1,8 +1,8 @@
-import { default as mongoose } from "mongoose"
+import { Schema, models, model } from 'mongoose';
 
 
 
-const ProductSchema = new mongoose.Schema({
+const ProductSchema = new Schema({
     name:{
         type:String,
         required:true
@@ -47,4 +47,4 @@ const ProductSchema = new mongoose.Schema({
     timestamps:true
 })
 
-export default mongoose.models.Product || mongoose.model('Product', ProductSchema)
+export default models.Product || model('Product', ProductSchema)

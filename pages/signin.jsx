@@ -13,13 +13,9 @@ const Singin = () => {
   const [password, setPassword] = useState();
   const router = useRouter();
 
-  const initialValues = {
-    name: "",
-    email: "",
-  };
 
-
-  const onSubmit =async(values, action) =>{
+  const userSignin =async(e) =>{
+    e.preventDefault()
     const res = await fetch(`${baseUrl}/api/auth/login`, {
       method: "POST",
       headers: {
@@ -64,12 +60,7 @@ const Singin = () => {
     }
   }
 
-  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
-  useFormik({
-    initialValues,
-    validationSchema: signupSchema,
-    onSubmit,
-  });
+
 
   return (
     <>
@@ -99,7 +90,7 @@ const Singin = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6" onSubmit={userSignin}>
             <div>
               <label
                 htmlFor="email"
@@ -112,14 +103,12 @@ const Singin = () => {
                   id="email"
                   name="email"
                   type="email"
-                  value={values.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
                   
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                {errors.email && touched.email ? (
-                  <p className="form-error">{errors.email}</p>
-                ) : null}
+  
               </div>
             </div>
 
@@ -145,15 +134,12 @@ const Singin = () => {
                   id="password"
                   name="password"
                   type="password"
-                  value={values.password}
+                  value={password}
                   autoComplete="current-password"
                   required
-                  onChange={handleChange}
+                  onChange={(e)=>setPassword(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                 {errors.password && touched.password ? (
-                  <p className="form-error">{errors.password}</p>
-                ) : null}
               </div>
             </div>
 

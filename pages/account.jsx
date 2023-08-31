@@ -5,9 +5,10 @@ import Cookies from "js-cookie";
 import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import baseUrl from "@/util/baseUrl";
 
 const Account = (orders) => {
-  console.log(orders);
+
   const cookie = parseCookies();
   const router = useRouter()
 
@@ -19,7 +20,7 @@ const Account = (orders) => {
         <div className="profile-card">
           <div className="flex mt-24">
             <div className="pro-img">
-              <Image src="/images/avatar.svg" alt="" />
+              <img src="/images/avatar.svg" alt="" />
             </div>
             <div className="pro-para">
               <div className="user-details">

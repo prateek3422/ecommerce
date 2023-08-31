@@ -1,4 +1,4 @@
-const Product = require("@/model/Product");
+const Product = require("@/model/Product").default;
 const { default: dbConnect } = require("@/util/db");
 
 export default async function (req, res) {

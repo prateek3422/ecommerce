@@ -7,15 +7,16 @@ import baseUrl from "@/util/baseUrl";
 const order = ({ orders }) => {
   // const cookie = parseCookies();
   // const router = useRouter()
-  console.log()
+  // console.log(orders)
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           {orders?.map((item) => {
-            console.log("🚀 ~ file: order.jsx:18 ~ orders?.map ~ ̥:", item);
+            // console.log("🚀 ~ file: order.jsx:18 ~ orders?.map ~ ̥:", item._id);
             return (
-              <>
+              <div  key={item._id}>
+
                  <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
@@ -38,7 +39,18 @@ const order = ({ orders }) => {
               </p>
               <div className="flex border-t border-b mb-6 border-gray-200 py-2">
                 <span className="text-gray-500">Quantity</span>
-                <span className="ml-auto text-gray-900">{item.products.quantity}</span>
+                {
+                  item?.products?.map((product) =>{
+                    
+                    return(
+                      <div key={product.product._id} >
+                      <span className="ml-auto text-gray-900">{product.quantity}</span>
+                      </div>
+
+)
+                  })
+                  
+                }
               </div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">
@@ -53,9 +65,9 @@ const order = ({ orders }) => {
               alt="ecommerce"
               className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
               src="/images/pro1.jpg"
-            />
+              />
           </div>
-              </>
+          </div>
             );
           })}
          

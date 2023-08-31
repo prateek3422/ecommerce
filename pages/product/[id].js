@@ -134,12 +134,9 @@ const ProductDetails = ({ data }) => {
 };
 
 export const getServerSideProps = async ({ params: { id } }) => {
-
-
-
   const res = await fetch(`${baseUrl}/api/products/${id}`);
   const data = await res.json();
-
+  console.log(data)
   return {
     props: {
       data,
