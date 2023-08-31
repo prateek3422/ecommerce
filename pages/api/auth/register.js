@@ -2,12 +2,7 @@ import User from "@/model/User";
 import dbConnect from "@/util/db";
 import valid from "@/util/valid";
 import bcrypt from "bcrypt";
-import Cart from  '@/model/Cart'
-import jwt from "jsonwebtoken";
-import { NextResponse } from "next/server";
-
-
-
+import Cart from "@/model/Cart"
 
 
 export default async function post(req, res) {
