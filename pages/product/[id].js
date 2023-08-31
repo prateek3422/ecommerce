@@ -76,8 +76,8 @@ const ProductDetails = ({ data }) => {
           {[data].map(({product}) => {
             // console.log(product)
             return (
-              <>
-                <div key={product._id} className="lg:w-4/5 mx-auto flex flex-wrap">
+              <div  key={product._id} >
+                <div className="lg:w-4/5 mx-auto flex flex-wrap">
                   <img
                     alt="ecommerce"
                     className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
@@ -124,7 +124,7 @@ const ProductDetails = ({ data }) => {
                     </div>
                   </div>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>
@@ -136,7 +136,6 @@ const ProductDetails = ({ data }) => {
 export const getServerSideProps = async ({ params: { id } }) => {
   const res = await fetch(`${baseUrl}/api/products/${id}`);
   const data = await res.json();
-  console.log(data)
   return {
     props: {
       data,

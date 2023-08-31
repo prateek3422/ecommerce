@@ -17,7 +17,7 @@ const HomeScreen = () => {
               <button className="btn">shop now</button>
             </div>
             <div className="hero-img ">
-              <Image src="/images/shop.jpg" alt="hero -img" />
+              <img src="/images/shop.jpg" alt="hero -img" />
             </div>
           </div>
 

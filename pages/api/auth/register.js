@@ -2,7 +2,7 @@ import User from "@/model/User";
 import dbConnect from "@/util/db";
 import valid from "@/util/valid";
 import bcrypt from "bcrypt";
-const Cart  = require("@/model/Cart")
+
 
 
 export default async function post(req, res) {
