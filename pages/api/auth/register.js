@@ -2,7 +2,7 @@ import User from "@/model/User";
 import dbConnect from "@/util/db";
 import valid from "@/util/valid";
 import bcrypt from "bcrypt";
-import Basket from "@/model/Cart";
+const Cart  = require("@/model/Cart")
 
 
 export default async function post(req, res) {
@@ -32,7 +32,7 @@ export default async function post(req, res) {
       password:passhash,
     });
     
-    const cart = await  Basket.create({user:newUser._id})
+    const cart = await  Cart.create({user:newUser._id})
 
 
       res.status(200).json({
