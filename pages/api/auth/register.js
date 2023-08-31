@@ -33,12 +33,12 @@ export default async function post(req, res) {
     });
     
     const cart = await  Cart.create({user:newUser._id})
-    // const token =  jwt.sign({user: newUser._id}, process.env.JWT_TOKEN, {expiresIn: process.env.JWT_Exp, });
 
 
       res.status(200).json({
         message: "successful",
         passhash,
+        cart
       });
 
   } catch (error) {
