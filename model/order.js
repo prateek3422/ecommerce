@@ -1,5 +1,5 @@
-const { default: product } = require("@/pages/product");
-const { default: mongoose } = require("mongoose");
+import { default as product } from "@/pages/product";
+import { default as mongoose } from "mongoose";
 
 const {ObjectId} = mongoose.Schema.Types
 
@@ -30,4 +30,4 @@ const orderSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.models.Order || mongoose.model('Order',orderSchema)
+export default mongoose.models.Order || mongoose.model('Order',orderSchema)

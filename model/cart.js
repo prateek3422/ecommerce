@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose")
+import { default as mongoose } from "mongoose"
 
 const {ObjectId} = mongoose.Schema.Types
 
@@ -28,4 +28,4 @@ const cartSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.models.Cart || mongoose.model('Cart', cartSchema)
+export default mongoose.models.Cart || mongoose.model('Cart', cartSchema)
