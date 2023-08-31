@@ -4,8 +4,9 @@ import { parseCookies } from "nookies";
 import Cookies from "js-cookie";
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
-const account = (orders) => {
+const Account = (orders) => {
   console.log(orders);
   const cookie = parseCookies();
   const router = useRouter()
@@ -18,7 +19,7 @@ const account = (orders) => {
         <div className="profile-card">
           <div className="flex mt-24">
             <div className="pro-img">
-              <img src="/images/avatar.svg" alt="" />
+              <Image src="/images/avatar.svg" alt="" />
             </div>
             <div className="pro-para">
               <div className="user-details">
@@ -77,7 +78,7 @@ export const getServerSideProps = async (ctx) => {
     res.end();
   }
 
-  const res = await fetch("http://localhost:3000/api/order", {
+  const res = await fetch(`${baseUrl}/api/order`, {
     headers: {
       Authorization: token,
     },
@@ -89,6 +90,6 @@ export const getServerSideProps = async (ctx) => {
 };
 
 // export default account
-export default dynamic(() => Promise.resolve(account), {
+export default dynamic(() => Promise.resolve(Account), {
   ssr: false,
 });

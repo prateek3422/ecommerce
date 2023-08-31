@@ -4,7 +4,7 @@ import '@/styles/globals.css'
 import Head from 'next/head'
 import { Provider } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
-import store from './store';
+import store from '../util/store';
 import { ToastContainer } from 'react-toastify';
 
 

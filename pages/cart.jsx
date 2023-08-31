@@ -6,14 +6,17 @@ import { IoMdAdd } from "react-icons/io";
 import { AiOutlineMinus } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, decreaseFromCart, removeFromCart } from "./store/cartSlice";
+import { addToCart, decreaseFromCart, removeFromCart } from "../util/store/cartSlice";
 import StripeCheckout from "react-stripe-checkout";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import Image from "next/image";
+import baseUrl from "@/util/baseUrl";
 
 const Cart = ({ error, product }) => {
   const { token } = parseCookies();
+  const router = useRouter();
 
   const [cproduct, setCproducts] = useState(product);
 
@@ -33,7 +36,7 @@ const Cart = ({ error, product }) => {
   }
 
   if (error) {
-    const router = useRouter();
+    
     toast.error(error, {
       position: "top-center",
       autoClose: 5000,
@@ -158,7 +161,7 @@ const Cart = ({ error, product }) => {
                         className="cart-list items-center m-4 "
                       >
                         <div className="items flex  items-center">
-                          <img
+                          <Image
                             className="object-cover object-center rounded"
                             alt="hero"
                             src="https://dummyimage.com/100x100"
@@ -233,7 +236,7 @@ export const getServerSideProps = async (ctx) => {
       },
     };
   }
-  const res = await fetch("http://localhost:3000/api/cart", {
+  const res = await fetch(`${baseUrl}/api/cart`, {
     headers: {
       Authorization: token,
     },

@@ -7,7 +7,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BsCart } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
 
-const navbar = () => {
+const Navbar = () => {
   const router = useRouter();
   const cookie = parseCookies();
   // console.log(cookie);
@@ -112,4 +112,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

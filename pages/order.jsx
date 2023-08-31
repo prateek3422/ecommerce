@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import React from "react";
+import baseUrl from "@/util/baseUrl";
 
 const order = ({ orders }) => {
   // const cookie = parseCookies();
@@ -72,7 +73,7 @@ export const getServerSideProps = async (ctx) => {
     res.end();
   }
 
-  const res = await fetch("http://localhost:3000/api/order", {
+  const res = await fetch(`${baseUrl}/api/order`, {
     headers: {
       Authorization: token,
     },

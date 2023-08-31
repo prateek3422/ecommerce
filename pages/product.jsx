@@ -4,6 +4,8 @@ import { BsFillGridFill } from "react-icons/bs";
 import { FaThList } from "react-icons/fa";
 import Search from "./component/search";
 import queryString from "query-string";
+import Image from "next/image";
+import baseUrl from "@/util/baseUrl";
 
 const product = ({ data }) => {
   //  console.log("🚀 ~ file: product.jsx:8 ~ product ~ ̥: ",data )
@@ -77,7 +79,7 @@ const product = ({ data }) => {
 
 export const getServerSideProps = async () => {
   const res = await fetch(
-    `http://localhost:3000/api/products/productController`
+    `${baseUrl}/api/products/productController`
   );
   const data = await res.json();
 

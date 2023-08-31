@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { signupSchema } from "./auth/schema";
+import { signupSchema } from "@/util/schema";
+import baseUrl from "@/util/baseUrl";
 
 const Singup = () => {
   const initialValues = {
@@ -16,7 +17,7 @@ const Singup = () => {
   const onSubmit = async( values, action) =>{
     // console.log(values.name)
 
-    const res = await fetch("http://localhost:3000/api/auth/register", {
+    const res = await fetch(`${baseUrl}/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

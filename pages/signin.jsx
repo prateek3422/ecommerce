@@ -1,20 +1,26 @@
+import { useFormik } from "formik";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { signupSchema } from "@/util/schema";
+import baseUrl from "@/util/baseUrl";
 
 const Singin = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
   const router = useRouter();
 
-  const userSignin = async (e) => {
-    e.preventDefault();
+  const initialValues = {
+    name: "",
+    email: "",
+  };
 
-    const res = await fetch("http://localhost:3000/api/auth/login", {
+
+  const onSubmit =async(values, action) =>{
+    const res = await fetch(`${baseUrl}/api/auth/login`, {
       method: "POST",
       headers: {
          "Content-Type":"application/json"
@@ -56,7 +62,14 @@ const Singin = () => {
         router.push("/account");
       }, 1000);
     }
-  };
+  }
+
+  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
+  useFormik({
+    initialValues,
+    validationSchema: signupSchema,
+    onSubmit,
+  });
 
   return (
     <>
@@ -86,7 +99,7 @@ const Singin = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={(e) => userSignin(e)}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -99,12 +112,14 @@ const Singin = () => {
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
+                  value={values.email}
+                  onChange={handleChange}
+                  
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.email && touched.email ? (
+                  <p className="form-error">{errors.email}</p>
+                ) : null}
               </div>
             </div>
 
@@ -130,12 +145,15 @@ const Singin = () => {
                   id="password"
                   name="password"
                   type="password"
-                  value={password}
+                  value={values.password}
                   autoComplete="current-password"
                   required
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                 {errors.password && touched.password ? (
+                  <p className="form-error">{errors.password}</p>
+                ) : null}
               </div>
             </div>
 
@@ -147,8 +165,8 @@ const Singin = () => {
                 Sign in
               </button>
 
-              <div className=" signup">
-                <span>don't have an account ?</span>
+              <div className="signup">
+                <span>dont have an account ?</span>
                 <button className="signup-btn">
                   <Link href="/signup ">Sign up</Link>
                 </button>

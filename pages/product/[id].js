@@ -3,10 +3,11 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/cartSlice";
+import { addToCart } from "../../util/store/cartSlice";
 import dynamic from "next/dynamic";
 import { toast } from "react-toastify";
-const productDetails = ({ data }) => {
+import baseUrl from "@/util/baseUrl";
+const ProductDetails = ({ data }) => {
   // const dispatch = useDispatch();
   // console.log(data)
   // console.log("🚀 ~ file: [id].js:6 ~ productDetails ~ ̥:", data.product);
@@ -136,7 +137,7 @@ export const getServerSideProps = async ({ params: { id } }) => {
 
 
 
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  const res = await fetch(`${baseUrl}/api/products/${id}`);
   const data = await res.json();
 
   return {
@@ -147,6 +148,6 @@ export const getServerSideProps = async ({ params: { id } }) => {
 };
 
 // export default productDetails;
-export default dynamic(() => Promise.resolve(productDetails), {
+export default dynamic(() => Promise.resolve(ProductDetails), {
   ssr: false,
 });
