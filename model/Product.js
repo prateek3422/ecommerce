@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose")
+import { default as mongoose } from "mongoose"
 
 
 
@@ -47,4 +47,4 @@ const ProductSchema = new mongoose.Schema({
     timestamps:true
 })
 
-module.exports = mongoose.models.Product || mongoose.model('Product', ProductSchema)
+export default mongoose.models.Product || mongoose.model('Product', ProductSchema)
