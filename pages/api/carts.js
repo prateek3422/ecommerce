@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 import dbConnect from "@/util/db";
 
 import Authenticated from "@/util/Authenticated";
-import Cart from "@/model/cart";
+import Cart from "@/model/userCart";
 
 
 
@@ -36,7 +36,7 @@ const fetchUserCart = Authenticated(async (req, res) => {
 const addProduct = Authenticated( async (req, res) => {
   const { productId, quantity } = req.body;
   
-  const cart =  await Cart.findOne({user: req.userid})
+  const cart =  await cart.findOne({user: req.userid})
 
 
 

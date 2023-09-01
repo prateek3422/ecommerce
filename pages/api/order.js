@@ -1,4 +1,5 @@
-import Order from "@/model/Order";
+
+import Order from "@/model/userOrder";
 import Authenticated from "@/util/Authenticated";
 import dbConnect from "@/util/db";
 

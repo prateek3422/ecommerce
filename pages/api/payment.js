@@ -1,5 +1,5 @@
-import Cart from "@/model/cart"
-import Order from "@/model/Order";
+import Cart from "@/model/userCart"
+import Order from "@/model/userOrder";
 import dbConnect from "@/util/db";
 import Stripe from "stripe";
 import {v4 as uuidV4 } from "uuid";
