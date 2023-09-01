@@ -22,7 +22,7 @@ const ProductDetails = ({ data }) => {
   // };
 
   const AddToCart = async (product)=>{
-    const res =  await fetch('http://localhost:3000/api/cart',{
+    const res =  await fetch(`${baseUrl}/api/carts`,{
       method:"PUT",
       headers:{
         "Content-Type":"application/json",

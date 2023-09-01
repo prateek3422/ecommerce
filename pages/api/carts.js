@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 import dbConnect from "@/util/db";
 
 import Authenticated from "@/util/Authenticated";
-import Cart from "@/model/Cart";
+import Cart from "@/model/cart";
 
 
 

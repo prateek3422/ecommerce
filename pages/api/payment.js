@@ -1,4 +1,4 @@
-import Cart from "@/model/Cart"
+import Cart from "@/model/cart"
 import Order from "@/model/Order";
 import dbConnect from "@/util/db";
 import Stripe from "stripe";

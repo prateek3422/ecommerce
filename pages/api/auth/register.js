@@ -1,5 +1,5 @@
-import Cart from "@/model/Cart";
 import User from "@/model/User";
+import Cart from "@/model/cart";
 import dbConnect from "@/util/db";
 import valid from "@/util/valid";
 import bcrypt from "bcrypt";
