@@ -1,18 +1,16 @@
-import { default as product } from "@/pages/product";
-import { default as mongoose } from "mongoose";
+const { default: mongoose } = require("mongoose");
 
-const {ObjectId} = mongoose.Schema.Types
 
-const orderSchema = new mongoose.Schema({
+const orderSchema = mongoose.Schema({
     user: {
-        type:ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
 
     products:[
         {
             quantity: {type:Number, default: 1},
-            product: {type:ObjectId , ref: "Product"}
+            product: {type:mongoose.Schema.Types.ObjectId , ref: "Product"}
 
         }
     ],
@@ -28,6 +26,7 @@ const orderSchema = new mongoose.Schema({
 },{
     timestamps:true
 })
+
 
 
 module.exports =  mongoose.models.Order || mongoose.model('Order',orderSchema)

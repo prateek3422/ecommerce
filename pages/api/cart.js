@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 
 import dbConnect from "@/util/db";
-import product from "../product";
 
 import Authenticated from "@/util/Authenticated";
 import Cart from "@/model/Cart";
+
 
 
 

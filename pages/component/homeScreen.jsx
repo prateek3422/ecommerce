@@ -4,6 +4,7 @@ import React from "react";
 const HomeScreen = () => {
   return (
     <>
+    
       <section>
         <div className="container">
           <div className="hero-main grid grid-cols-2 mt-8">

@@ -1,11 +1,11 @@
-import  mongoose  from "mongoose";
-const {ObjectId} = mongoose.Schema.Types
+const { default: mongoose } = require("mongoose");
 
 
-const cartSchema = new mongoose.Schema({
+const cartSchema = mongoose.Schema({
+
   
     user:{
-        type:ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
 
@@ -15,7 +15,7 @@ const cartSchema = new mongoose.Schema({
             quantity:{type:Number,default:1},
 
             product:{
-                type:ObjectId,
+                type: mongoose.Schema.Types.ObjectId,
                 ref:'Product'
             }
         }
@@ -24,6 +24,8 @@ const cartSchema = new mongoose.Schema({
  
 },{
     timestamps:true
+
+
 })
 
 

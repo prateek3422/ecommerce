@@ -1,3 +1,4 @@
+import Cart from "@/model/Cart";
 import User from "@/model/User";
 import dbConnect from "@/util/db";
 import valid from "@/util/valid";
