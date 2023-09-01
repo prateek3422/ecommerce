@@ -78,9 +78,7 @@ const product = ({ data }) => {
 };
 
 export const getServerSideProps = async () => {
-  const res = await fetch(
-    `${baseUrl}/api/products/productController`
-  );
+  const res = await fetch(`${baseUrl}/api/products/productController`);
   const data = await res.json();
 
   return {
