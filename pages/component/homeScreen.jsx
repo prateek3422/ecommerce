@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const HomeScreen = () => {
@@ -15,7 +16,12 @@ const HomeScreen = () => {
                 Similique atque corrupti odio quasi qui aperiam accusamus
                 repudiandae sapiente maiores omnis!
               </p>
-              <button className="btn">shop now</button>
+              <button
+               className="btn">
+                <Link href='/product'>
+                shop now
+                </Link>
+                </button>
             </div>
             <div className="hero-img ">
               <img src="/images/shop.jpg" alt="hero -img" />
