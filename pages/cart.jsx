@@ -101,7 +101,7 @@ const Cart = ({ error, product }) => {
   // }
 
   const handleToPay = async (paymentInfo) => {
-    const res = await fetch("http://localhost:3000/api/payment", {
+    const res = await fetch(`${baseUrl}/api/payment`, {
       method: "POST",
       headers: {
         "Content-Type":"application/json",
@@ -236,7 +236,7 @@ export const getServerSideProps = async (ctx) => {
       },
     };
   }
-  const res = await fetch(`${baseUrl}/api/cart`, {
+  const res = await fetch(`${baseUrl}/api/carts`, {
     headers: {
       Authorization: token,
     },
