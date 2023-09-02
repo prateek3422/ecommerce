@@ -52,6 +52,7 @@ body {
   width: 3rem;
 }
 
+
 /* --------signup-------- */
 
 .signup {
@@ -70,6 +71,29 @@ body {
 }
 
 /* --------cart----------- */
+.cart-empty{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.start-Shopping {
+  display: flex;
+  padding-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+}
+
+.start-Shopping h5{
+  font-size: 1.5vw;
+  font-family: cursive;
+  font-weight: 600;
+}
+
 
 .cart-list {
   display: grid;
@@ -81,9 +105,26 @@ body {
 }
 
 /* .quantity-box{
-  border: 1px solid rgb(16, 15, 15);
 } */
 
+.quantity{
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+}
+
+.quantity h5{
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.quantity input{
+  border: 1px solid rgb(16, 15, 15);
+  width: 4vw;
+  text-decoration: none;
+  
+
+}
 .img-des p {
   margin-bottom: 1rem;
 }

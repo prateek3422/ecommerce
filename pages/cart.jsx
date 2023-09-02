@@ -19,6 +19,7 @@ const Cart = ({ error, product }) => {
   const router = useRouter();
 
   const [cproduct, setCproducts] = useState(product);
+  console.log(cproduct.products)
 
   let price = 0;
   const { count, setCount } = useState(0);
@@ -59,7 +60,7 @@ const Cart = ({ error, product }) => {
 
   const handleRemoveFromCart = async (item) => {
 
-    const res = await fetch("http://localhost:3000/api/cart", {
+    const res = await fetch(`${baseUrl}/api/carts`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -130,13 +131,17 @@ const Cart = ({ error, product }) => {
         <div className="flex justify-center items-center flex-col mb-16  ">
           <h1>Shopping Cart</h1>
         </div>
-        {product.length === 0 ? (
+        {
+        cproduct.products.length === 0 ? (
           <div className="cart-empty">
+          <div className="carts">
+
             <h1>Shopping Cart is Emapty</h1>
+          </div>
             <div className="start-Shopping">
-              <Link href="/product">
                 <BsArrowLeftSquareFill />
-                <span>start Shopping</span>
+              <Link href="/product">
+                <h5>start Shopping</h5>
               </Link>
             </div>
           </div>
@@ -155,13 +160,13 @@ const Cart = ({ error, product }) => {
                   // console.log("🚀 ~ file: cart.jsx:103 ~ {[product]?.map ~ ̥:", item.product._id)
                   price = price + item.quantity * item.product.price;
                   return (
-                    <>
+                    <div   key={item.product._id} >
                       <div
-                        key={item.product._id}
+                      
                         className="cart-list items-center m-4 "
                       >
                         <div className="items flex  items-center">
-                          <Image
+                          <img
                             className="object-cover object-center rounded"
                             alt="hero"
                             src="https://dummyimage.com/100x100"
@@ -187,7 +192,7 @@ const Cart = ({ error, product }) => {
                         <p>{item.product.price * item.quantity}</p>
                       </div>
                       <hr className=" h-0.5 bg-black" />
-                    </>
+                    </div>
                   );
                 })}
 

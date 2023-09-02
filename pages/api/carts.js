@@ -36,7 +36,7 @@ const fetchUserCart = Authenticated(async (req, res) => {
 const addProduct = Authenticated( async (req, res) => {
   const { productId, quantity } = req.body;
   
-  const cart =  await cart.findOne({user: req.userid})
+  const cart =  await Cart.findOne({user: req.userid})
 
 
 

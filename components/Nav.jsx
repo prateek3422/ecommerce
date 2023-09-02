@@ -39,7 +39,7 @@ const Navbar = () => {
                 Product
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/about"
                 className=" hover:text-gray-900"
@@ -47,7 +47,7 @@ const Navbar = () => {
               >
                 About
               </Link>
-            </li>
+            </li> */}
 
             {/* <div className="nav-list flex items-center"> */}
             {user ? (

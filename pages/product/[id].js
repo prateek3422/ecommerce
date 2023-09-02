@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
@@ -11,6 +11,7 @@ const ProductDetails = ({ data }) => {
   // const dispatch = useDispatch();
   // console.log(data)
   // console.log("🚀 ~ file: [id].js:6 ~ productDetails ~ ̥:", data.product);
+  const [quantity, setQuantity] = useState(1);
 
   const router = useRouter();
   const cookie = parseCookies();
@@ -21,62 +22,58 @@ const ProductDetails = ({ data }) => {
   //   router.push('/cart')
   // };
 
-  const AddToCart = async (product)=>{
-    const res =  await fetch(`${baseUrl}/api/carts`,{
-      method:"PUT",
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":cookie.token
+  const AddToCart = async (product) => {
+    const res = await fetch(`${baseUrl}/api/carts`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: cookie.token,
       },
-      body:JSON.stringify({
-        quantity: 1,
-       productId:product._id
-      })
-    })
-  const response = await res.json()
-  // console.log("🚀 ~ file: [id].js:36 ~ AddToCart ~ ̥:",response )
-  if(response.error){
-    toast.error(response.error,{
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    })
-     Cookies.remove("user")
-     Cookies.remove("token")
-     router.push('/login')
-  }else{
-    toast.success("product added to cart", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
+      body: JSON.stringify({
+        quantity,
+        productId: product._id,
+      }),
     });
+    const response = await res.json();
+    // console.log("🚀 ~ file: [id].js:36 ~ AddToCart ~ ̥:",response )
+    if (response.error) {
+      toast.error(response.error, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      Cookies.remove("user");
+      Cookies.remove("token");
+      router.push("/login");
+    } else {
+      toast.success("product added to cart", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
 
       router.push("/cart");
-
-
-  }
-
-
-  }
+    }
+  };
 
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
-          {[data].map(({product}) => {
+          {[data].map(({ product }) => {
             // console.log(product)
             return (
-              <div  key={product._id} >
+              <div key={product._id}>
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">
                   <img
                     alt="ecommerce"
@@ -88,12 +85,11 @@ const ProductDetails = ({ data }) => {
                     <h2 className="text-sm title-font text-gray-500 tracking-widest">
                       {product.name}
                     </h2>
+
                     <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                       {product.title}
                     </h1>
-                    <p className="leading-relaxed">
-                      {product.description}
-                    </p>
+                    <p className="leading-relaxed">{product.description}</p>
                     <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                       <div className="flex">
                         <span className="mr-3">Color</span>
@@ -102,13 +98,23 @@ const ProductDetails = ({ data }) => {
                         <button className="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
                       </div>
                     </div>
+                    <div className="quantity mt-6  border-b-2 pb-5 border-gray-100 mb-5">
+                      <h5>quantity</h5>
+                      <input
+                        type="Number"
+                        min="1"
+                        placeholder="Quantity"
+                        value={quantity}
+                        onChange={(e) => setQuantity(Number(e.target.value))}
+                      />
+                    </div>
                     <div className="flex">
                       <span className="title-font font-medium text-2xl text-gray-900">
                         {product.price}
                       </span>
                       {user ? (
                         <button
-                          onClick={() => AddToCart(product) }
+                          onClick={() => AddToCart(product)}
                           className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
                         >
                           AddToCart

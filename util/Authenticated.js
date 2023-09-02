@@ -21,11 +21,11 @@ function Authenticated(icomponent) {
 
         // console.log(verify);
         const { userid } = jwt.verify( authorization, process.env.JWT_TOKEN,);
-        console.log(userid)
+        // console.log(userid)
         req.userid = userid;
         return icomponent(req, res);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return res.status(500).json({ error: 'you must login' });
       }
     };
