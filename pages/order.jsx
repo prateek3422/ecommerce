@@ -33,7 +33,6 @@ const order = ({ orders }) => {
           ): (
         <div className="container px-5 py-16 mx-auto">
           {orders?.map((item) => {
-            console.log("🚀 ~ file: order.jsx:18 ~ orders?.map ~ ̥:", item);
             return (
               <div key={item._id}>
               {item?.products?.map((product) => {
