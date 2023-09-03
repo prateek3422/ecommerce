@@ -35,10 +35,12 @@ const order = ({ orders }) => {
                 <div key={item._id}>
                   {item?.products?.map((product) => {
                     return (
-                      <div key={product.Id} className="lg:w-4/5 mx-auto flex flex-wrap">
-                        <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-                          // console.log(product);
-                          <div>
+                      <div  key={product._id}> 
+                        <div
+                         
+                          className="lg:w-4/5 mx-auto flex flex-wrap"
+                        >
+                          <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
                             <h2 className="text-sm title-font text-gray-500 tracking-widest">
                               {product.product.name}
                             </h2>
