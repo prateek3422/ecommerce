@@ -56,7 +56,7 @@ const product = ({ data }) => {
                       >
                         <div className="card ">
                           <div className="box">
-                            <img src="/images/pro.jpg" alt="" />
+                            <img src={product.imageUrl} alt="" />
                           </div>
                           <div className="para">
                             <p>{product.name}</p>

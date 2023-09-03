@@ -23,7 +23,7 @@ const Cart = ({ error, product }) => {
   const router = useRouter();
 
   const [cproduct, setCproducts] = useState(product);
-  console.log(cproduct.products);
+
 
   let price = 0;
   const { count, setCount } = useState(0);
