@@ -32,7 +32,7 @@ const CreateProduct = () => {
 
       const data = await res.json();
 
-      console.log("🚀 ~ file: newProduct.jsx:32 ~ handleSubmit ~ ̥:", data)
+
 
       if (data.error) {
         toast.error(data.error, {
