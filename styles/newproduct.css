@@ -1,0 +1,21 @@
+.section-cp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createProduct {
+  width: 80vw;
+}
+
+.cp-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cp-card input{
+    border: 1px solid #888;
+    margin-bottom: 1rem;
+}
