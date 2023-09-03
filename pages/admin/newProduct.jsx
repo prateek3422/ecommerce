@@ -3,7 +3,7 @@ import { data } from "autoprefixer";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const newProduct = () => {
+const CreateProduct = () => {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -236,4 +236,4 @@ const newProduct = () => {
   );
 };
 
-export default newProduct;
+export default CreateProduct;
