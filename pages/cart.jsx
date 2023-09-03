@@ -6,7 +6,11 @@ import { IoMdAdd } from "react-icons/io";
 import { AiOutlineMinus } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, decreaseFromCart, removeFromCart } from "../util/store/cartSlice";
+import {
+  addToCart,
+  decreaseFromCart,
+  removeFromCart,
+} from "../util/store/cartSlice";
 import StripeCheckout from "react-stripe-checkout";
 import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
@@ -19,7 +23,7 @@ const Cart = ({ error, product }) => {
   const router = useRouter();
 
   const [cproduct, setCproducts] = useState(product);
-  console.log(cproduct.products)
+  console.log(cproduct.products);
 
   let price = 0;
   const { count, setCount } = useState(0);
@@ -37,7 +41,6 @@ const Cart = ({ error, product }) => {
   }
 
   if (error) {
-    
     toast.error(error, {
       position: "top-center",
       autoClose: 5000,
@@ -59,12 +62,11 @@ const Cart = ({ error, product }) => {
   // const dispatch = useDispatch();
 
   const handleRemoveFromCart = async (item) => {
-
     const res = await fetch(`${baseUrl}/api/carts`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
       },
       body: JSON.stringify({
         productId: item.product._id,
@@ -105,11 +107,11 @@ const Cart = ({ error, product }) => {
     const res = await fetch(`${baseUrl}/api/payment`, {
       method: "POST",
       headers: {
-        "Content-Type":"application/json",
-        "Authorization":token 
+        "Content-Type": "application/json",
+        Authorization: token,
       },
       body: JSON.stringify({
-        paymentInfo
+        paymentInfo,
       }),
     });
     const data = await res.json();
@@ -122,7 +124,7 @@ const Cart = ({ error, product }) => {
       draggable: true,
       progress: undefined,
       theme: "light",
-    })
+    });
   };
 
   return (
@@ -131,15 +133,13 @@ const Cart = ({ error, product }) => {
         <div className="flex justify-center items-center flex-col mb-16  ">
           <h1>Shopping Cart</h1>
         </div>
-        {
-        cproduct.products.length === 0 ? (
+        {cproduct.products.length === 0 ? (
           <div className="cart-empty">
-          <div className="carts">
-
-            <h1>Shopping Cart is Emapty</h1>
-          </div>
+            <div className="carts">
+              <h1>Shopping Cart is Emapty</h1>
+            </div>
             <div className="start-Shopping">
-                <BsArrowLeftSquareFill />
+              <BsArrowLeftSquareFill />
               <Link href="/product">
                 <h5>start Shopping</h5>
               </Link>
@@ -160,11 +160,8 @@ const Cart = ({ error, product }) => {
                   // console.log("🚀 ~ file: cart.jsx:103 ~ {[product]?.map ~ ̥:", item.product._id)
                   price = price + item.quantity * item.product.price;
                   return (
-                    <div   key={item.product._id} >
-                      <div
-                      
-                        className="cart-list items-center m-4 "
-                      >
+                    <div key={item.product._id}>
+                      <div className="cart-list items-center m-4 ">
                         <div className="items flex  items-center">
                           <img
                             className="object-cover object-center rounded"
@@ -209,7 +206,7 @@ const Cart = ({ error, product }) => {
                     </div>
                     <StripeCheckout
                       name="my store"
-                      amount = {price * 100}
+                      amount={price * 100}
                       currency="INR"
                       shippingAddress={true}
                       billingAddress={true}

@@ -66,36 +66,6 @@ export default async (req,res)=>{
   const createProducts = async (req, res) =>{
 
     try {
-
-      let images = []
-
-      if(typeof req.body.images === "string"){
-        images.push(req.body.images)
-      }else{
-        images = req.body.images
-      }
-
-
-      const imageLinks =[]
-
-      for(var i=0; i<images.length; i++){
-        const result = await cloudinary.v2.uploader.upload(images[i],{
-          folder:'product'
-        })
-
-
-        imageLinks.push({
-          public_id: result.public_id,
-          url_id: result.url_id
-        })
-      }
-
-       req.body.images = imageLinks
-       req.body.user = req.user.id;
-
-
-
-
         const product = await Product.create(req.body)
         // console.log(product)
         res.status(200).json({

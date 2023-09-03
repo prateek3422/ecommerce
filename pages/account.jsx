@@ -16,9 +16,9 @@ const Account = (orders) => {
 
   return (
     <>
-      <div className="container flex justify-center">
+      <div className="acontainer flex justify-center">
         <div className="profile-card">
-          <div className="flex mt-24">
+          <div className=" mt-12 account-card">
             <div className="pro-img">
               <img src="/images/avatar.svg" alt="" />
             </div>

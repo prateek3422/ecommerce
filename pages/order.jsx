@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import React from "react";
 import baseUrl from "@/util/baseUrl";
+import { BsArrowLeftSquareFill } from "react-icons/bs";
 
 const order = ({ orders }) => {
   // const cookie = parseCookies();
@@ -11,7 +12,26 @@ const order = ({ orders }) => {
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
-        <div className="container px-5 py-24 mx-auto">
+
+        <div className="flex justify-center items-center flex-col mb-16  ">
+          <h1>Your Order</h1>
+        </div>
+
+        {
+          orders.length === 0 ? (
+            <div className="cart-empty">
+            <div className="carts">
+              <h1>Your order is Emapty</h1>
+            </div>
+            <div className="start-Shopping">
+              <BsArrowLeftSquareFill />
+              <Link href="/product">
+                <h5>start Shopping</h5>
+              </Link>
+            </div>
+          </div>
+          ): (
+        <div className="container px-5 py-16 mx-auto">
           {orders?.map((item) => {
             // console.log("🚀 ~ file: order.jsx:18 ~ orders?.map ~ ̥:", item);
             return (
@@ -47,6 +67,8 @@ const order = ({ orders }) => {
                       );
                     })}
 
+
+
                     <div className="flex">
                       <span className="title-font font-medium text-2xl text-gray-900">
                         {item.total}
@@ -58,14 +80,17 @@ const order = ({ orders }) => {
                   </div>
                   <img
                     alt="ecommerce"
-                    className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                    className="lg:w-1/2 w-full  h-64 object-cover object-center rounded"
                     src="/images/pro1.jpg"
                   />
                 </div>
+                <hr className=" mb-6 border-gray-200 py-2 " />
               </div>
             );
           })}
+
         </div>
+          )}
       </section>
     </>
   );

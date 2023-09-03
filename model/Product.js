@@ -23,20 +23,10 @@ const ProductSchema = new Schema({
         type:String,
         required:true
     },
-    images:[
-        {
-            public_id: {
-                type:String,
-                required:true
-            },
-
-            url_id:{
-                type:String,
-                required:true
-            }
-            
-        }
-    ]
+    imageUrl:{
+        type:String,
+        required:true
+    }
     ,
     // stocks:{
     //     type:String,
