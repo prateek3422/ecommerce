@@ -71,14 +71,16 @@ const ProductDetails = ({ data }) => {
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           {[data].map(({ product }) => {
-            // console.log(product)
+            
+            console.log(product)
             return (
               <div key={product._id}>
-                <div className="lg:w-4/5 mx-auto flex flex-wrap">
+                <div className=" img-box">
+                  
                   <img
                     alt="ecommerce"
-                    className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-                    src="/images/pro1.jpg"
+                    className="img-pd object-cover object-center rounded"
+                    src={product.imageUrl}
                   />
 
                   <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

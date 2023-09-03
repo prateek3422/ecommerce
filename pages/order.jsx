@@ -33,14 +33,14 @@ const order = ({ orders }) => {
           ): (
         <div className="container px-5 py-16 mx-auto">
           {orders?.map((item) => {
-            // console.log("🚀 ~ file: order.jsx:18 ~ orders?.map ~ ̥:", item);
+            console.log("🚀 ~ file: order.jsx:18 ~ orders?.map ~ ̥:", item);
             return (
               <div key={item._id}>
+              {item?.products?.map((product) => {
+                      return (
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">
                   <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-                    {item?.products?.map((product) => {
                       // console.log(product);
-                      return (
                         <div key={product._id}>
                           <h2 className="text-sm title-font text-gray-500 tracking-widest">
                             {product.product.name}
@@ -64,8 +64,6 @@ const order = ({ orders }) => {
                             </span>
                           </div>
                         </div>
-                      );
-                    })}
 
 
 
@@ -80,10 +78,12 @@ const order = ({ orders }) => {
                   </div>
                   <img
                     alt="ecommerce"
-                    className="lg:w-1/2 w-full  h-64 object-cover object-center rounded"
-                    src="/images/pro1.jpg"
-                  />
+                    className="lg:w-1/2 w-full object-cover object-center rounded"
+                    src={product.product.imageUrl}
+                    />
                 </div>
+                    );
+              })}
                 <hr className=" mb-6 border-gray-200 py-2 " />
               </div>
             );

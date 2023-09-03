@@ -168,6 +168,19 @@ body {
   gap: 2rem;
 }
 
+
+
+/* ========prodct details=========== */
+
+.img-pd{
+  width: 20vw !important;
+}
+.img-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 /* ==========profile========= */
 
 .profile-card {
